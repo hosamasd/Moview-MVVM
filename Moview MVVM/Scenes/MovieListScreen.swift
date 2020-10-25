@@ -19,10 +19,19 @@ struct MovieListScreen: View {
     var body: some View {
         VStack {
             
-            TextField("Search", text: $movieName, onEditingChanged: { _ in }, onCommit: {
-                // perform the search
+            TextField("Search...", text: $movieName, onEditingChanged: { (changed) in
                 self.movieListVM.searchByName(self.movieName)
-                }).textFieldStyle(RoundedBorderTextFieldStyle())
+                       }) {
+                self.movieListVM.searchByName(self.movieName)
+            }.padding().textFieldStyle(RoundedBorderTextFieldStyle())
+                       
+            
+//            TextField("Search", text: $movieName, .onChange,: {
+//                self.movieListVM.searchByName(self.movieName)
+//                         }, onCommit: {
+//                // perform the search
+//                self.movieListVM.searchByName(self.movieName)
+//            }).textFieldStyle(RoundedBorderTextFieldStyle())
             Spacer()
             
             .navigationBarTitle("Movies")
